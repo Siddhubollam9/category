@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Category Added</title>
+</head>
+<body>
+    <h1>Category Added Successfully!</h1>
+    <p>Main Category: {{ main_category.name }}</p>
+    <a href="{% url 'add_category' %}">Add Another Category</a>
+    <a href="{% url 'show_categories' %}">View Categories</a>
+</body>
+</html>

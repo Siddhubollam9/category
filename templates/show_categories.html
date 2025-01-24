@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Show Categories</title>
+    <style>
+        ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Category Hierarchy</h1>
+    <ul>
+        {% for category in categories %}
+            <li>
+                {{ category.name }}
+                <a href="{% url 'edit_category' category.id %}">Edit</a>
+                <a href="{% url 'delete_category' category.id %}" onclick="return confirm('Are you sure you want to delete this category?');">Delete</a>
+                {% include 'categories/subcategories.html' with subcategories=category.subcategories.all %}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

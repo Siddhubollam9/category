@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Category Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+        .category {
+            margin-left: 20px;
+        }
+        .form-container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Category Management</h1>
+
+    <!-- Display Categories -->
+    <h2>Category Tree</h2>
+    <ul>
+        {% for category in categories %}
+            <li>
+                {{ category.name }}
+                {% include "categories/subcategories.html" with subcategories=category.subcategories.all %}
+            </li>
+        {% endfor %}
+    </ul>
+
+    <!-- Form to Add Categories -->
+    <div class="form-container">
+        <h2>Add New Category</h2>
+        <form method="post">
+            {% csrf_token %}
+            <label for="name">Category Name:</label>
+            <input type="text" id="name" name="name" required>
+            <br><br>
+            <label for="parent">Parent Category ID (Optional):</label>
+            <input type="number" id="parent" name="parent">
+            <br><br>
+            <button type="submit">Add Category</button>
+        </form>
+    </div>
+</body>
+</html>

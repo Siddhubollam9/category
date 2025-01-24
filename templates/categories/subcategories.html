@@ -1,0 +1,10 @@
+<ul>
+    {% for subcategory in subcategories %}
+        <li>
+            {{ subcategory.name }}
+            <a href="{% url 'edit_category' subcategory.id %}">Edit</a>
+            <a href="{% url 'delete_category' subcategory.id %}" onclick="return confirm('Are you sure you want to delete this subcategory?');">Delete</a>
+            {% include 'categories/subcategories.html' with subcategories=subcategory.subcategories.all %}
+        </li>
+    {% endfor %}
+</ul>
